@@ -18,6 +18,9 @@ class CocktailsContainer extends Component {
       [event.target.name]: event.target.value
     })
   }
+  submitNewCocktail=() => {
+    this.setState({ cocktails: [...this.state.cocktails, { name: this.state.cocktailName, instructions: this.state.instructions, description: this.state.cocktailDescription } ] })
+  }
 
   selectCocktail =(cocktail) => {
     this.setState({ selectedCocktail: cocktail })
@@ -35,9 +38,7 @@ class CocktailsContainer extends Component {
   }
   render () {
     const { cocktails, selectedCocktail, cocktailName, cocktailDescription, instructions, ingredientName, ingredientQuantity } = this.state
-    const filteredCocktails = this.state.cocktails.filter(cocktail =>{
-      return cocktail.name.toLowerCase().includes(this.state.cocktailName.toLowerCase())
-    })
+    
     return (
       <div className='container'>
         {
@@ -47,7 +48,7 @@ class CocktailsContainer extends Component {
               deselectCocktail={this.deselectCocktail}
             />
             : <CocktailsList
-              cocktails={filteredCocktails}
+              cocktails={cocktails}
               selectCocktail={this.selectCocktail}
             />
         }
@@ -58,6 +59,7 @@ class CocktailsContainer extends Component {
           ingredientName={ingredientName}
           ingredientQuantity={ingredientQuantity}
           handleChange={this.handleChange}
+          submitNewCocktail={this.submitNewCocktail}
         />
       </div>
     )

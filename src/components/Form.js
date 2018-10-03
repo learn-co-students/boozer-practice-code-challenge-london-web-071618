@@ -12,20 +12,21 @@ class Form extends Component {
         <input
           type='text'
           name='cocktailName'
+          onChange={handleChange}
         />
 
         <p>Description</p>
         <input
           type='text'
           name='cocktailDescription'
-          onChange={(event) => { handleChange(event.target.value) }}
+          onChange={handleChange}
         />
 
         <p>Instructions</p>
         <input
           type='text'
           name='instructions'
-          onChange={(event) => { handleChange(event.target.value) }}
+          onChange={handleChange}
         />
 
         <h3>Proportions</h3>
@@ -34,7 +35,7 @@ class Form extends Component {
             <input
               type='text'
               name='ingredientName'
-              onChange={(event) => { handleChange(event.target.value) }}
+              onChange={handleChange}
             />
           </p>
 
@@ -42,14 +43,18 @@ class Form extends Component {
             <input
               type='text'
               name='ingredientQuantity'
-              onChange={(event) => { handleChange(event.target.value) }}
+              onChange={handleChange }
             />
           </p>
         </div>
 
         <p><button> + </button></p>
 
-        <input type='submit' />
+        <input
+          type='submit'
+          onClick={(event)=>{event.preventDefault()
+            this.props.submitNewCocktail()}}
+        />
       </form>
     )
   }
